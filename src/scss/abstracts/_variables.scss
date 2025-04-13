@@ -16,6 +16,8 @@
 
     /* naming colors */
     --Java: var(--green-400);
+    --Java-alpha: hsla(172, 67%, 45%, 0.5);
+    --Java-light: hsl(185, 41%, 84%);
     --Sherpa-Blue: var(--green-900);
     --Cutty-Sark: var(--grey-500);
     --Granny-Smith: var(--grey-400);
@@ -32,5 +34,5 @@
     --fs-small: #{f.rem(12)};
     --fs-body: #{f.rem(14)};
     --fs-medium: #{f.rem(18)};
-    --fs-large: #{f.rem(28)};
+    --fs-large: #{f.rem(32)};
 }

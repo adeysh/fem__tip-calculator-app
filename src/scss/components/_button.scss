@@ -9,4 +9,10 @@
     font-weight: var(--fw-bold);
     background-color: var(--Java);
     color: var(--Sherpa-Blue);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background-color: var(--Java-light);
+        cursor: pointer;
+    }
 }

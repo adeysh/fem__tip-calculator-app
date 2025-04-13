@@ -27,6 +27,7 @@
 </head>
 
 <body>
+    <!-- header logo -->
     <header class="header wrapper">
         <svg xmlns="http://www.w3.org/2000/svg" width="87" height="54">
             <path fill="#3D6666"
@@ -34,13 +35,17 @@
         </svg>
     </header>
 
+    <!-- Calculator -->
     <main class="wrapper calculator">
+        <!-- Calculator form with input fields -->
         <form class="calculator__form" novalidate>
+            <!-- Calculator input for bill -->
             <div class="calculator__input-field">
                 <label class="calculator__label" for="bill">Bill</label>
                 <input type="number" class="calculator__input calculator__input--bill" placeholder="0" id="bill">
             </div>
 
+            <!-- Calculator input for tip% with buttons and custom field -->
             <div class="calculator__select-field">
                 <label class="calculator__label" for="tip%">Select Tip %</label>
                 <div class="grid_container">
@@ -63,13 +68,17 @@
                         id="tip%">
                 </div>
             </div>
+
+            <!-- Calculator input field for no. of people -->
             <div class="calculator__input-field">
                 <label class="calculator__label" for="people">Number of People</label>
                 <input type="number" class="calculator__input calculator__input--people" placeholder="0" id="people">
             </div>
         </form>
+        <!-- Calculator results container -->
         <div class="calculator__results">
             <div class="calculator__results-wrapper">
+                <!-- Tip amount per person container -->
                 <div class="calculator__result">
                     <div class="calculator__result-labels">
                         <span class="calculator__result-label calculator__result-label--title">Tip Amount</span>
@@ -79,6 +88,7 @@
                         <span>$4.27</span>
                     </div>
                 </div>
+                <!-- Total per person container -->
                 <div class="calculator__result">
                     <div class="calculator__result-labels">
                         <span class="calculator__result-label calculator__result-label--title">Total</span>
@@ -89,10 +99,12 @@
                     </div>
                 </div>
             </div>
+            <!-- Reset button -->
             <button class="button button--reset" type="button">Reset</button>
         </div>
     </main>
 
+    <!-- footer attribution -->
     <footer class="attribution">
         Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank" rel="noopener">Frontend
             Mentor</a>.

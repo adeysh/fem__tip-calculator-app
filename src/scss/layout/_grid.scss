@@ -10,6 +10,14 @@
         "btn-50 custom";
     text-align: center;
     gap: a.rem(16);
+
+    @include a.bp($from: "tablet") {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            "btn-5 btn-10 btn-15"
+            "btn-25 btn-50 custom";
+        min-inline-size: a.rem(350);
+    }
 }
 
 .btn-5 {

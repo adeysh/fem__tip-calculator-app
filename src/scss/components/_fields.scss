@@ -6,7 +6,7 @@
 }
 
 .calculator__input {
-    border: none;
+    border: 2px solid transparent;
     outline: none;
     background-color: var(--Black-Squeeze);
     text-align: right;
@@ -17,6 +17,9 @@
     font-weight: var(--fw-bold);
     background-repeat: no-repeat;
     background-position: 5% 50%;
+    transition: all 0.2s ease-in-out;
+
+
 
     &--bill {
         background-image: url('/assets/images/icon-dollar.svg');
@@ -33,16 +36,40 @@
             text-align: right;
         }
     }
+
+    &:hover {
+        border: 2px solid var(--Java);
+        cursor: pointer;
+    }
+
+    &:focus {
+        border: 2px solid var(--Java);
+    }
 }
 
 .calculator__tip-label {
-    border: 1px solid black;
     background-color: var(--Sherpa-Blue);
     color: var(--White);
     font-size: var(--fs-medium);
     font-weight: var(--fw-bold);
     padding: a.rem(5) a.rem(10);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background-color: var(--Java);
+        color: var(--Sherpa-Blue);
+        cursor: pointer;
+    }
+
+    &:active {
+        background-color: var(--Java-alpha);
+    }
+
+    &:has(input:checked) {
+        background-color: var(--Java);
+    }
 }
+
 
 .calculator__select-field {
     @include a.flexbox($direction: column, $justify: center, $align: stretch, $gap: a.rem(12))

@@ -5,5 +5,7 @@
 
     @include a.bp($from: "tablet") {
         margin-inline: a.rem(30);
+        width: min(a.rem(820), calc(100% - a.rem(40)));
+        min-inline-size: a.rem(700);
     }
 }
