@@ -1,0 +1,12 @@
+@use '../abstracts' as a;
+
+.button {
+    padding: 0.3125rem 0.625rem;
+    border-radius: a.rem(5);
+    border: none;
+    text-transform: uppercase;
+    font-size: var(--fs-medium);
+    font-weight: var(--fw-bold);
+    background-color: var(--Java);
+    color: var(--Sherpa-Blue);
+}

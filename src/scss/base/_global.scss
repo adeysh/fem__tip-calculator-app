@@ -1,0 +1,29 @@
+@use '../abstracts' as a;
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: var(--ff-primary);
+    font-size: var(--fs-body);
+    background-color: var(--Jagged-Ice);
+    min-height: 100%;
+    @include a.flexbox($direction: column, $justify: flex-start, $align: center);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="radio"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+    display: none;
+}

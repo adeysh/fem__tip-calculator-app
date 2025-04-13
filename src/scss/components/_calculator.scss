@@ -1,0 +1,55 @@
+@use '../abstracts' as a;
+
+.calculator {
+    background-color: var(--white);
+    border-radius: a.rem(24) a.rem(24) 0 0;
+    padding: a.rem(30);
+    flex: 1;
+    @include a.flexbox($direction: column, $justify: space-between, $align: stretch);
+
+    &__label {
+        color: var(--Cutty-Sark);
+        font-weight: var(--fw-bold);
+    }
+}
+
+.calculator__form {
+    @include a.flexbox($direction: column, $justify: space-between, $align: stretch, $gap: a.rem(25));
+}
+
+.calculator__results {
+    background-color: var(--Sherpa-Blue);
+    border-radius: a.rem(10);
+    @include a.flexbox($direction: column, $justify: center, $align: stretch, $gap: a.rem(16));
+    width: 100%;
+    padding: a.rem(30) a.rem(20) a.rem(20);
+
+    &-wrapper {
+        @include a.flexbox($direction: column, $justify: center, $align: stretch, $gap: a.rem(16));
+    }
+}
+
+.calculator__result {
+    @include a.flexbox($direction: row, $justify: space-between, $align: stretch);
+
+    &-labels {
+        @include a.flexbox($direction: column, $justify: center, $align: flex-start, $gap: a.rem(0.3));
+    }
+
+    &-value {
+        color: var(--Java);
+        font-size: var(--fs-large);
+        font-weight: var(--fw-bold);
+    }
+
+    &-label--title {
+        color: var(--white);
+        font-weight: var(--fw-bold);
+    }
+
+    &-label--per-person {
+        color: var(--Granny-Smith);
+        font-weight: var(--fw-bold);
+        font-size: var(--fs-small);
+    }
+}

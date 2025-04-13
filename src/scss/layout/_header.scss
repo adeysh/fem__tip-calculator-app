@@ -1,0 +1,7 @@
+@use '../abstracts' as a;
+
+
+.header {
+    @include a.flexbox($direction: row, $justify: center, $align: center);
+    padding-block: a.rem(40);
+}

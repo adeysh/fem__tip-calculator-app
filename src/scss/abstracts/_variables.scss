@@ -1,0 +1,36 @@
+@use "./functions" as f;
+
+:root {
+    /* colors */
+
+    // primary
+    --green-400: hsl(172, 67%, 45%);
+
+    // neutral
+    --green-900: #00494d;
+    --grey-500: #5e7a7d;
+    --grey-400: #7f9c9f;
+    --grey-200: #c5e4e7;
+    --grey-50: #f4fafb;
+    --white: #ffffff;
+
+    /* naming colors */
+    --Java: var(--green-400);
+    --Sherpa-Blue: var(--green-900);
+    --Cutty-Sark: var(--grey-500);
+    --Granny-Smith: var(--grey-400);
+    --Jagged-Ice: var(--grey-200);
+    --Black-Squeeze: var(--grey-50);
+    --White: var(--white);
+
+    /* fonts */
+
+    --ff-primary: 'Space Mono', sans-serif;
+    --fw-bold: 700;
+
+    // font-sizes
+    --fs-small: #{f.rem(12)};
+    --fs-body: #{f.rem(14)};
+    --fs-medium: #{f.rem(18)};
+    --fs-large: #{f.rem(28)};
+}

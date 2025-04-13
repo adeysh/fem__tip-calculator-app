@@ -1,0 +1,44 @@
+@use '../abstracts' as a;
+
+.grid_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+        "btn-5 btn-10"
+        "btn-15 btn-25"
+        "btn-50 custom";
+    text-align: center;
+    gap: a.rem(16);
+}
+
+.btn-5 {
+    grid-area: btn-5;
+}
+
+.btn-10 {
+    grid-area: btn-10;
+}
+
+.btn-15 {
+    grid-area: btn-15;
+}
+
+.btn-25 {
+    grid-area: btn-25;
+}
+
+.btn-50 {
+    grid-area: btn-50;
+}
+
+.custom {
+    grid-area: custom;
+}
+
+.grid_container>* {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: a.rem(5);
+    border: none;
+}

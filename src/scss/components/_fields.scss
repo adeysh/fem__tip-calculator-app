@@ -1,0 +1,49 @@
+@use '../abstracts' as a;
+
+
+.calculator__input-field {
+    @include a.flexbox($direction: column, $gap: a.rem(3));
+}
+
+.calculator__input {
+    border: none;
+    outline: none;
+    background-color: var(--Black-Squeeze);
+    text-align: right;
+    padding: a.rem(8) a.rem(15);
+    border-radius: a.rem(5);
+    font-size: var(--fs-medium);
+    color: var(--Sherpa-Blue);
+    font-weight: var(--fw-bold);
+    background-repeat: no-repeat;
+    background-position: 5% 50%;
+
+    &--bill {
+        background-image: url('/assets/images/icon-dollar.svg');
+    }
+
+    &--people {
+        background-image: url('/assets/images/icon-person.svg');
+    }
+
+    &--option {
+        padding: 0 a.rem(15);
+
+        &::placeholder {
+            text-align: right;
+        }
+    }
+}
+
+.calculator__tip-label {
+    border: 1px solid black;
+    background-color: var(--Sherpa-Blue);
+    color: var(--White);
+    font-size: var(--fs-medium);
+    font-weight: var(--fw-bold);
+    padding: a.rem(5) a.rem(10);
+}
+
+.calculator__select-field {
+    @include a.flexbox($direction: column, $justify: center, $align: stretch, $gap: a.rem(12))
+}
