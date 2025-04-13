@@ -11,10 +11,22 @@
         color: var(--Cutty-Sark);
         font-weight: var(--fw-bold);
     }
+
+    @include a.bp($from: "tablet") {
+        flex: 0;
+        border-radius: a.rem(15);
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+        @include a.flexbox($direction: row, $gap: a.rem(40));
+        padding: a.rem(40);
+    }
 }
 
 .calculator__form {
     @include a.flexbox($direction: column, $justify: space-between, $align: stretch, $gap: a.rem(25));
+
+    @include a.bp($from: "tablet") {
+        flex: 1;
+    }
 }
 
 .calculator__results {
@@ -26,6 +38,10 @@
 
     &-wrapper {
         @include a.flexbox($direction: column, $justify: center, $align: stretch, $gap: a.rem(16));
+    }
+
+    @include a.bp($from: "tablet") {
+        flex: 1;
     }
 }
 

@@ -3,15 +3,12 @@
 
 // Define breakpoints
 $breakpoints: (
-    "mobile": em(480),
     "tablet": em(720),
-    "desktopS": em(960),
-    "desktop": em(1240),
+    "desktop": em(1200),
     "desktop-large": em(1920),
     "desktop-xlarge": em(2560),
 );
 
-// Modern breakpoint mixin with width > and width < syntax
 @mixin bp($from: false, $to: false, $extra: ()) {
     $conditions: "screen";
 
@@ -45,16 +42,16 @@ $breakpoints: (
 }
 
 // Usage examples
-.element {
-    @include bp($from: "mobile", $to: "desktop") {
-        background: red;
-    }
+// .element {
+//     @include bp($from: "mobile", $to: "desktop") {
+//         background: red;
+//     }
 
-    @include bp($to: "desktop") {
-        color: blue;
-    }
+//     @include bp($to: "desktop") {
+//         color: blue;
+//     }
 
-    @include bp($from: "tablet", $extra: (orientation: landscape)) {
-        font-size: 20px;
-    }
-}
+//     @include bp($from: "tablet", $extra: (orientation: landscape)) {
+//         font-size: 20px;
+//     }
+// }

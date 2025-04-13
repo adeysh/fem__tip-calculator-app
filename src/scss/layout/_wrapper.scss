@@ -2,4 +2,8 @@
 
 .wrapper {
     margin-inline: auto;
+
+    @include a.bp($from: "tablet") {
+        margin-inline: a.rem(30);
+    }
 }
