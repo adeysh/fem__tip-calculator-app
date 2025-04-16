@@ -7,12 +7,13 @@
     --green-400: hsl(172, 67%, 45%);
 
     // neutral
-    --green-900: #00494d;
-    --grey-500: #5e7a7d;
-    --grey-400: #7f9c9f;
-    --grey-200: #c5e4e7;
-    --grey-50: #f4fafb;
-    --white: #ffffff;
+    --green-900: hsl(183, 100%, 15%);
+    --grey-500: hsl(186, 14%, 43%);
+    --grey-400: hsl(186, 14%, 56%);
+    --grey-200: hsl(185, 41%, 84%);
+    --grey-50: hsl(189, 47%, 97%);
+    --white: hsl(0, 0%, 100%);
+    --red: hsl(1, 83%, 63%);
 
     /* naming colors */
     --Java: var(--green-400);
@@ -24,6 +25,7 @@
     --Jagged-Ice: var(--grey-200);
     --Black-Squeeze: var(--grey-50);
     --White: var(--white);
+    --Error: var(--red);
 
     /* fonts */
 

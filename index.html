@@ -38,11 +38,19 @@
     <!-- Calculator -->
     <main class="wrapper calculator">
         <!-- Calculator form with input fields -->
-        <form class="calculator__form" novalidate>
+        <form class="calculator__form" id="calculator-form" novalidate>
             <!-- Calculator input for bill -->
             <div class="calculator__input-field">
-                <label class="calculator__label" for="bill">Bill</label>
-                <input type="number" class="calculator__input calculator__input--bill" placeholder="0" id="bill">
+                <div class="calculator__label-wrapper">
+                    <label class="calculator__label" for="bill">Bill
+                        <span class="important-mark">
+                            <sup>*</sup>
+                        </span>
+                    </label>
+                    <p class="calculator__label hide error">Can't be zero</p>
+                </div>
+                <input type="number" class="calculator__input calculator__input--bill" name="bill" placeholder="0"
+                    id="bill">
             </div>
 
             <!-- Calculator input for tip% with buttons and custom field -->
@@ -64,15 +72,23 @@
                     <label for="50" class="calculator__tip-label btn-50">
                         <input type="radio" name="options" id="50" value="50" class="button calculator__tip-option">50%
                     </label>
-                    <input type="number" class="calculator__input custom calculator__input--option" placeholder="Custom"
-                        id="tip%">
+                    <input type="number" name="custom-tip" class="calculator__input custom calculator__input--option"
+                        placeholder="Custom" id="custom-tip">
                 </div>
             </div>
 
             <!-- Calculator input field for no. of people -->
             <div class="calculator__input-field">
-                <label class="calculator__label" for="people">Number of People</label>
-                <input type="number" class="calculator__input calculator__input--people" placeholder="0" id="people">
+                <div class="calculator__label-wrapper">
+                    <label class="calculator__label" for="people">Number of People
+                        <span class="important-mark">
+                            <sup>*</sup>
+                        </span>
+                    </label>
+                    <p class="calculator__label hide error">Can't be zero</p>
+                </div>
+                <input type="number" name="people" class="calculator__input calculator__input--people" placeholder="0"
+                    id="people">
             </div>
         </form>
         <!-- Calculator results container -->
@@ -85,7 +101,7 @@
                         <span class="calculator__result-label calculator__result-label--per-person">/ person</span>
                     </div>
                     <div class="calculator__result-value">
-                        <span>$4.27</span>
+                        $<span id="tip-amount">0.00</span>
                     </div>
                 </div>
                 <!-- Total per person container -->
@@ -95,12 +111,22 @@
                         <span class="calculator__result-label calculator__result-label--per-person">/ person</span>
                     </div>
                     <div class="calculator__result-value">
-                        <span>$32.79</span>
+                        $<span id="total">00.00</span>
                     </div>
                 </div>
             </div>
+            <button type="button" title="Insights" class="calculator__question-icon" id="question-popup">
+                <span class="popuptext" id="popup">
+                    <p>Total Tip Amount: $
+                        <span id="total-tip-popup"></span>
+                    </p>
+                    <p>Total Amount: $
+                        <span id="total-amount-popup"></span>
+                    </p>
+                </span>
+            </button>
             <!-- Reset button -->
-            <button class="button button--reset" type="button">Reset</button>
+            <button class="button button--reset" disabled type="button" id="reset-btn">Reset</button>
         </div>
     </main>
 

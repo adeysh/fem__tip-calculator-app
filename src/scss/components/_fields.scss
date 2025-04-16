@@ -37,6 +37,12 @@
         }
     }
 
+    &--error,
+    &--error:hover,
+    &--error:focus {
+        border: 2px solid var(--Error) !important;
+    }
+
     &:hover {
         border: 2px solid var(--Java);
         cursor: pointer;

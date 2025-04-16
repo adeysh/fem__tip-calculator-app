@@ -5,11 +5,126 @@
     border-radius: a.rem(24) a.rem(24) 0 0;
     padding: a.rem(30);
     flex: 1;
-    @include a.flexbox($direction: column, $justify: space-between, $align: stretch);
+    @include a.flexbox($direction: column, $justify: space-between, $align: stretch, $gap: a.rem(25));
 
     &__label {
         color: var(--Cutty-Sark);
         font-weight: var(--fw-bold);
+
+        &-wrapper {
+            @include a.flexbox($justify: space-between);
+        }
+
+        &--error {
+            color: var(--Error);
+        }
+    }
+
+    &__question-icon {
+        background-image: url('/assets/images/icon-question-mark.svg');
+        align-self: flex-start;
+        height: 25px;
+        width: 25px;
+        background-color: var(--white);
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none;
+        border-radius: 50%;
+        @include a.transition;
+        position: relative;
+
+
+        .popuptext {
+            background-color: var(--Java);
+            color: var(--Sherpa-Blue);
+            position: absolute;
+            left: 170%;
+            top: -65%;
+            width: 250px;
+            display: block;
+            padding: a.rem(8) a.rem(15);
+            z-index: 1;
+            border-radius: a.rem(8);
+            visibility: hidden;
+            text-align: left;
+            font-weight: var(--fw-bold);
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 33%;
+                left: -6.25px;
+                margin-left: -10px;
+                border-width: 8px;
+                border-style: solid;
+                border-color: var(--Java) transparent transparent transparent;
+                rotate: 90deg;
+            }
+        }
+
+        &:hover {
+            background-color: var(--Java);
+        }
+    }
+
+    .show {
+        visibility: visible;
+        -webkit-animation: fadeIn 0.2s;
+        animation: fadeIn 0.2s;
+    }
+
+    .hide {
+        -webkit-animation: fadeOut 0.2s;
+        animation: fadeOut 0.2s;
+        animation-fill-mode: forwards;
+    }
+
+    @-webkit-keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    .important-mark {
+        color: var(--Error);
+    }
+
+    .active {
+        background-color: var(--Java);
     }
 
     @include a.bp($from: "tablet") {
@@ -33,12 +148,12 @@
 .calculator__results {
     background-color: var(--Sherpa-Blue);
     border-radius: a.rem(10);
-    @include a.flexbox($direction: column, $justify: center, $align: stretch, $gap: a.rem(16));
+    @include a.flexbox($direction: column, $justify: center, $align: stretch, $gap: a.rem(32));
     width: 100%;
     padding: a.rem(32) a.rem(30) a.rem(30);
 
     &-wrapper {
-        @include a.flexbox($direction: column, $justify: center, $align: stretch, $gap: a.rem(32));
+        @include a.flexbox($direction: column, $justify: center, $align: stretch, $gap: a.rem(20));
     }
 
     @include a.bp($from: "tablet") {
