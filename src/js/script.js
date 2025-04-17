@@ -11,6 +11,10 @@ const totalAmountEl = document.getElementById("total");
 const resetBtn = document.getElementById("reset-btn");
 const messageEl = document.getElementById("message");
 
+window.addEventListener("DOMContentLoaded", () => {
+    messageEl.classList.add("hide");
+});
+
 const getFormValues = (form) => {
     const formElements = Array.from(form.elements);
 
@@ -69,6 +73,8 @@ const clearErrors = (event) => {
 }
 
 form.addEventListener("input", (event) => {
+    messageEl.classList.remove("hide");
+    messageEl.classList.add("show");
     clearErrors(event);
     maybeSubmitForm(form);
 });

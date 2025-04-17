@@ -14,7 +14,7 @@ body {
 
     @include a.bp($from: "tablet") {
         margin-block-start: a.rem(80);
-        @include a.flexbox($direction: column, $justify: flex-start, $align: center, $gap: a.rem(20));
+        @include a.flexbox($direction: column, $justify: flex-start, $align: center, $gap: a.rem(52));
     }
 }
 
@@ -43,6 +43,7 @@ input[type="radio"] {
     font-weight: var(--fw-bold);
     width: 100%;
     text-align: center;
+    z-index: -1;
 
     @include a.bp($from: "tablet") {
         bottom: a.rem(-32);
