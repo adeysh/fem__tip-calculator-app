@@ -9,13 +9,45 @@ const form = document.getElementById("calculator-form");
 const tipAmountEl = document.getElementById("tip-amount");
 const totalAmountEl = document.getElementById("total");
 const resetBtn = document.getElementById("reset-btn");
+const messageEl = document.getElementById("message");
 
-form.addEventListener("input", (event) => {
-    console.log("input");
+const getFormValues = (form) => {
+    const formElements = Array.from(form.elements);
+
+    let bill = ""
+    let people = ""
+    let selectedTip = ""
+    let customTip = ""
+
+    formElements.forEach(element => {
+        if (element.name === "bill") bill = element.value.trim();
+        if (element.name === "people") people = element.value.trim();
+        if (element.name === "options" && element.checked) selectedTip = element.value;
+        if (element.name === "custom-tip") customTip = element.value.trim();
+    });
+
+    return { bill, people, selectedTip, customTip };
+};
+
+const isFormReady = ({ bill, people, selectedTip, customTip }) => {
+    return bill && people && (selectedTip || customTip);
+};
+
+const maybeSubmitForm = (form) => {
+    messageEl.classList.remove("hide");
+    const values = getFormValues(form);
+
+    if (isFormReady(values)) {
+        messageEl.classList.add("hide");
+        resetBtn.disabled = false;
+        form.requestSubmit();
+    }
+}
+
+const clearErrors = (event) => {
     const input = event.target;
     const value = input.value.trim();
     const parent = input.parentElement;
-    resetBtn.disabled = false;
 
     if (input.name == "bill" || input.name == "people") {
 
@@ -34,7 +66,11 @@ form.addEventListener("input", (event) => {
             input.classList.remove("calculator__input--error");
         }
     }
-    form.requestSubmit();
+}
+
+form.addEventListener("input", (event) => {
+    clearErrors(event);
+    maybeSubmitForm(form);
 });
 
 form.addEventListener("submit", (event) => {
@@ -65,6 +101,7 @@ const toggleClass = (element, className) => {
 
 resetBtn.addEventListener("click", () => {
     form.reset();
+    messageEl.classList.remove("hide");
     changeTextContent(totalAmountEl, "00.00");
     changeTextContent(tipAmountEl, "00.00");
     changeTextContent(totalTipPopupEl, "00.00");
@@ -98,7 +135,7 @@ questionPopupBtn.addEventListener("click", () => {
 
 const showError = (fieldname, errorText = "") => {
     const field = document.getElementById(fieldname);
-
+    console.log(fieldname);
     if (fieldname === "custom-tip") {
         field.classList.add("calculator__input--error");
     } else {
@@ -110,7 +147,6 @@ const showError = (fieldname, errorText = "") => {
         errorMsgEl.classList.add("calculator__label--error")
         errorMsgEl.classList.remove("hide");
         errorMsgEl.classList.add("show");
-        console.log(field, label, errorMsgEl);
     }
 }
 
@@ -155,5 +191,4 @@ const createFormEntries = (formData) => {
     };
 
     calculateBill(formEntries);
-    console.log(formEntries);
 }

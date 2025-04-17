@@ -5,11 +5,12 @@ html {
 }
 
 body {
+    height: 100%;
     font-family: var(--ff-primary);
     font-size: var(--fs-body);
     background-color: var(--Jagged-Ice);
-    min-height: 100vh;
-    @include a.flexbox($direction: column, $justify: flex-start, $align: center);
+    // min-height: 100vh;
+    @include a.flexbox($direction: column, $justify: flex-start, $align: center, $gap: a.rem(64));
 
     @include a.bp($from: "tablet") {
         margin-block-start: a.rem(80);
@@ -31,4 +32,20 @@ input[type="radio"] {
     /* Not removed via appearance */
     margin: 0;
     display: none;
+}
+
+.message {
+    position: absolute;
+    top: a.rem(-32);
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--Sherpa-Blue);
+    font-weight: var(--fw-bold);
+    width: 100%;
+    text-align: center;
+
+    @include a.bp($from: "tablet") {
+        bottom: a.rem(-32);
+    }
+
 }

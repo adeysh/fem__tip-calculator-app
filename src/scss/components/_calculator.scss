@@ -1,6 +1,7 @@
 @use '../abstracts' as a;
 
 .calculator {
+    position: relative;
     background-color: var(--white);
     border-radius: a.rem(24) a.rem(24) 0 0;
     padding: a.rem(30);
