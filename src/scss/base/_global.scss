@@ -36,7 +36,7 @@ input[type="radio"] {
 
 .message {
     position: absolute;
-    top: a.rem(-32);
+    top: a.rem(-48);
     left: 50%;
     transform: translateX(-50%);
     color: var(--Sherpa-Blue);
@@ -44,9 +44,4 @@ input[type="radio"] {
     width: 100%;
     text-align: center;
     z-index: -1;
-
-    @include a.bp($from: "tablet") {
-        bottom: a.rem(-32);
-    }
-
 }
