@@ -38,6 +38,7 @@
 
     <!-- Calculator -->
     <main class="wrapper calculator">
+        <h1 class="visually-hidden">Tip Calculator</h1>
         <!-- Calculator form with input fields -->
         <form class="calculator__form" id="calculator-form" novalidate>
             <!-- Calculator input for bill -->
@@ -56,7 +57,7 @@
 
             <!-- Calculator input for tip% with buttons and custom field -->
             <div class="calculator__select-field">
-                <label class="calculator__label" for="tip%">Select Tip %</label>
+                <p class="calculator__label" for="tip%">Select Tip %</p>
                 <div class="grid_container">
                     <label for="5" class="calculator__tip-label btn-5">
                         <input type="radio" name="options" id="5" value="5" class="button calculator__tip-option">5%
@@ -117,14 +118,14 @@
                 </div>
             </div>
             <button type="button" title="Insights" class="calculator__question-icon" id="question-popup">
-                <span class="popuptext" id="popup">
+                <div class="popuptext" id="popup">
                     <p>Total Tip Amount: $
                         <span id="total-tip-popup"></span>
                     </p>
                     <p>Total Amount: $
                         <span id="total-amount-popup"></span>
                     </p>
-                </span>
+                </div>
             </button>
             <!-- Reset button -->
             <button class="button button--reset" disabled type="button" id="reset-btn">Reset</button>
