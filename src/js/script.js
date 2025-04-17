@@ -1,3 +1,4 @@
+// constants
 const people = document.getElementById("people");
 const customTipEl = document.getElementById("custom-tip");
 const tipInputButtons = document.querySelectorAll(".calculator__tip-option");
@@ -11,9 +12,81 @@ const totalAmountEl = document.getElementById("total");
 const resetBtn = document.getElementById("reset-btn");
 const messageEl = document.getElementById("message");
 
+// event listeners
 window.addEventListener("DOMContentLoaded", () => {
     messageEl.classList.add("hide");
 });
+
+form.addEventListener("input", (event) => {
+    messageEl.classList.remove("hide");
+    messageEl.classList.add("show");
+    clearErrors(event);
+    maybeSubmitForm(form);
+});
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = Object.fromEntries(new FormData(form));
+    createFormEntries(formData);
+});
+
+form.addEventListener("reset", () => {
+    resetBtn.disabled = true;
+});
+
+customTipEl.addEventListener("focus", () => {
+    tipInputButtons.forEach(btn => {
+        if (btn.checked == true) {
+            btn.checked = false;
+        }
+    });
+});
+
+resetBtn.addEventListener("click", () => {
+    form.reset();
+    messageEl.classList.remove("hide");
+    changeTextContent(totalAmountEl, "00.00");
+    changeTextContent(tipAmountEl, "00.00");
+    changeTextContent(totalTipPopupEl, "00.00");
+    changeTextContent(totalAmountPopupEl, "00.00");
+});
+
+questionPopupBtn.addEventListener("click", () => {
+    if (popup.classList.contains("show")) {
+        hidePopup();
+        toggleClass(questionPopupBtn, "active");
+    } else {
+        showPopup();
+        toggleClass(questionPopupBtn, "active");
+    }
+});
+
+// form-handlers
+const createFormEntries = (formData) => {
+    const formEntries = {
+        "bill": parseFloat(formData["bill"]) === 0 ? showError("bill", "Can't be zero!")
+            : parseFloat(formData["bill"]) < 0 ? showError("bill", "Can't be negative!")
+                : parseFloat(formData["bill"]),
+
+        "tip": formData["custom-tip"] !== "" ? parseFloat(formData["custom-tip"]) <= 0 ? showError("custom-tip")
+            : parseFloat(formData["custom-tip"])
+            : parseFloat(formData["options"]),
+
+        "people": parseInt(formData["people"]) === 0 ? showError("people", "Can't be zero!") : parseInt(formData["people"]) < 0 ? showError("people", "Can't be negative!")
+            : parseInt(formData["people"]),
+    };
+
+    calculateBill(formEntries);
+}
+
+const updateUI = (calculations) => {
+    if (Number(calculations["tipPerPerson"]) && Number(calculations["billPerPerson"])) {
+        changeTextContent(totalAmountEl, calculations["billPerPerson"]);
+        changeTextContent(tipAmountEl, calculations["tipPerPerson"]);
+        changeTextContent(totalTipPopupEl, calculations["tipAmount"]);
+        changeTextContent(totalAmountPopupEl, calculations["totalAmount"]);
+    }
+}
 
 const getFormValues = (form) => {
     const formElements = Array.from(form.elements);
@@ -48,6 +121,25 @@ const maybeSubmitForm = (form) => {
     }
 }
 
+// calculations
+const calculateBill = (formEntries) => {
+    let tipAmount = (formEntries["tip"] / 100) * formEntries["bill"];
+    let totalAmount = formEntries["bill"] + tipAmount;
+
+    let tipPerPerson = tipAmount / formEntries["people"];
+    let billPerPerson = totalAmount / formEntries["people"];
+
+    const calculations = {
+        "tipAmount": tipAmount.toFixed(2),
+        "totalAmount": totalAmount.toFixed(2),
+        "tipPerPerson": tipPerPerson.toFixed(2),
+        "billPerPerson": billPerPerson.toFixed(2),
+    }
+
+    updateUI(calculations);
+}
+
+// utils
 const clearErrors = (event) => {
     const input = event.target;
     const value = input.value.trim();
@@ -72,30 +164,6 @@ const clearErrors = (event) => {
     }
 }
 
-form.addEventListener("input", (event) => {
-    messageEl.classList.remove("hide");
-    messageEl.classList.add("show");
-    clearErrors(event);
-    maybeSubmitForm(form);
-});
-
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const formData = Object.fromEntries(new FormData(form));
-    createFormEntries(formData);
-});
-
-form.addEventListener("reset", () => {
-    resetBtn.disabled = true;
-})
-
-customTipEl.addEventListener("focus", () => {
-    tipInputButtons.forEach(btn => {
-        if (btn.checked == true) {
-            btn.checked = false;
-        }
-    });
-});
 
 const changeTextContent = (element, value) => {
     element.textContent = value;
@@ -105,14 +173,6 @@ const toggleClass = (element, className) => {
     element.classList.toggle(className);
 }
 
-resetBtn.addEventListener("click", () => {
-    form.reset();
-    messageEl.classList.remove("hide");
-    changeTextContent(totalAmountEl, "00.00");
-    changeTextContent(tipAmountEl, "00.00");
-    changeTextContent(totalTipPopupEl, "00.00");
-    changeTextContent(totalAmountPopupEl, "00.00");
-});
 
 const hidePopup = () => {
     toggleClass(popup, "show");
@@ -129,15 +189,6 @@ const showPopup = () => {
     popup.classList.add("show");
 }
 
-questionPopupBtn.addEventListener("click", () => {
-    if (popup.classList.contains("show")) {
-        hidePopup();
-        toggleClass(questionPopupBtn, "active");
-    } else {
-        showPopup();
-        toggleClass(questionPopupBtn, "active");
-    }
-})
 
 const showError = (fieldname, errorText = "") => {
     const field = document.getElementById(fieldname);
@@ -156,45 +207,5 @@ const showError = (fieldname, errorText = "") => {
     }
 }
 
-const updateUI = (calculations) => {
-    if (Number(calculations["tipPerPerson"]) && Number(calculations["billPerPerson"])) {
-        changeTextContent(totalAmountEl, calculations["billPerPerson"]);
-        changeTextContent(tipAmountEl, calculations["tipPerPerson"]);
-        changeTextContent(totalTipPopupEl, calculations["tipAmount"]);
-        changeTextContent(totalAmountPopupEl, calculations["totalAmount"]);
-    }
-}
 
-const calculateBill = (formEntries) => {
-    let tipAmount = (formEntries["tip"] / 100) * formEntries["bill"];
-    let totalAmount = formEntries["bill"] + tipAmount;
 
-    let tipPerPerson = tipAmount / formEntries["people"];
-    let billPerPerson = totalAmount / formEntries["people"];
-
-    const calculations = {
-        "tipAmount": tipAmount.toFixed(2),
-        "totalAmount": totalAmount.toFixed(2),
-        "tipPerPerson": tipPerPerson.toFixed(2),
-        "billPerPerson": billPerPerson.toFixed(2),
-    }
-
-    updateUI(calculations);
-}
-
-const createFormEntries = (formData) => {
-    const formEntries = {
-        "bill": parseFloat(formData["bill"]) === 0 ? showError("bill", "Can't be zero!")
-            : parseFloat(formData["bill"]) < 0 ? showError("bill", "Can't be negative!")
-                : parseFloat(formData["bill"]),
-
-        "tip": formData["custom-tip"] !== "" ? parseFloat(formData["custom-tip"]) <= 0 ? showError("custom-tip")
-            : parseFloat(formData["custom-tip"])
-            : parseFloat(formData["options"]),
-
-        "people": parseInt(formData["people"]) === 0 ? showError("people", "Can't be zero!") : parseInt(formData["people"]) < 0 ? showError("people", "Can't be negative!")
-            : parseInt(formData["people"]),
-    };
-
-    calculateBill(formEntries);
-}
