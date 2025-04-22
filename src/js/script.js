@@ -42,6 +42,13 @@ customTipEl.addEventListener("focus", () => {
     });
 });
 
+tipInputButtons.forEach(radio => {
+    radio.addEventListener("change", () => {
+        customTipEl.value = "";
+        maybeSubmitForm(form);
+    })
+});
+
 resetBtn.addEventListener("click", () => {
     form.reset();
     messageEl.classList.remove("hide");
