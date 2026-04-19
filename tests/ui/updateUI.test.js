@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { updateUI } from "../../src/js/ui.js";
+import { updateUI, showPopup } from "../../src/js/ui.js";
 
 describe("updateUI", () => {
   it("updates DOM correctly", () => {
@@ -19,5 +19,13 @@ describe("updateUI", () => {
 
     expect(elements.tipAmount.textContent).toBe("5.00");
     expect(elements.total.textContent).toBe("55.00");
+  });
+
+  it("shows popup", () => {
+    const popup = document.createElement("div");
+
+    showPopup(popup);
+
+    expect(popup.classList.contains("show")).toBe(true);
   });
 });

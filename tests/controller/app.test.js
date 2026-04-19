@@ -73,4 +73,13 @@ describe("App Integration", () => {
 
     expect(bill.classList.contains("calculator__input--error")).toBe(true);
   });
+
+  it("toggles popup on button click", async () => {
+    const btn = document.getElementById("question-popup");
+    const popup = document.getElementById("popup");
+
+    await userEvent.click(btn);
+
+    expect(popup.classList.contains("show")).toBe(true);
+  });
 });
